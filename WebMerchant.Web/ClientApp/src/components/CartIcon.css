@@ -1,0 +1,41 @@
+﻿body {
+}
+
+.cart-icon {
+    width: 25px;
+    height: 25px;
+    background: url('/Static/Images/cart.png');
+    background-size: cover;
+    display: inline-block;
+    position: relative;
+    vertical-align: -13px;
+    cursor: pointer;
+}
+
+    .cart-icon:before {
+        height: 100%;
+        content: '';
+        vertical-align: central;
+    }
+
+
+
+    .cart-icon .count {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: middle;
+        font-size: 10px;
+    }
+
+.cart-icon .count:empty {
+    display: none;
+}

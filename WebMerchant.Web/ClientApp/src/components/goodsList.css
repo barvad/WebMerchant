@@ -1,0 +1,14 @@
+﻿body {
+}
+
+img.good-img {
+    width: 200px;
+    height: 200px;
+    
+}
+
+button.add-to-cart {
+    background: lightgreen;
+    border: black solid 1px;
+    content: 'В корзину'
+}

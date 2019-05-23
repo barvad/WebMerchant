@@ -1,0 +1,22 @@
+﻿body {
+}
+.pagerItemSelected {
+    background: white;
+}
+
+.pagerItem {
+    background: lightgrey;
+}
+.dataTable .content {
+    height: 700px;
+}
+
+.dataTable table {
+    width: 100%;
+}
+
+.dataTable .paginator a {
+    padding: 1px 6px;
+    cursor: pointer;
+    margin: 1px;
+}
