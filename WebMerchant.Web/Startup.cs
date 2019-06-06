@@ -24,8 +24,6 @@ namespace WebMerchant.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
                                        {
@@ -35,13 +33,18 @@ namespace WebMerchant.Web
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IGoodsService, GoodsService>();
             services.AddTransient<IOrderService, OrderService>();
-            
+
+
+            ///////////////////////////////////new Newtonsoft.Json.Converters.StringEnumConverter())
+            services.AddMvc().AddJsonOptions(o => o.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented);
+            services.AddMvc().AddJsonOptions(o => o.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter()));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
+           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

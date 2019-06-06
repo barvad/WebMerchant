@@ -31,7 +31,8 @@ namespace WebMerchant.Web.Controllers
             return new {Result = 0, Message = "OK", OrderId = order.Id};
         }
 
-        public Order GetOrder(Order order)
+        [HttpPost("[action]")]
+        public Order GetOrder([FromBody] Order order)
         {
             order = _orderService.GetOrder(order.Id);
             return order;

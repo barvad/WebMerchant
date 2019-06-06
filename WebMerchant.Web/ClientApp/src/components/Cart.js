@@ -18,7 +18,7 @@ export class Cart extends AppModal {
             cmdBtnText: cartLines.length ?  'Purchase': null,
             cancelBtnText: 'Close'
         };
-        window.addToCart = good=>this.addToStorage(good);
+        window.addToCart = good => { this.addToStorage(good); }
         window.showCart = () => this.setState({ ...this.state, visible: true });
         setTimeout(()=>this.init(),0);
     }
@@ -52,7 +52,7 @@ export class Cart extends AppModal {
   
 
     addToStorage(good) {
-        
+        this.checkOrderState();
         var cartLines = JSON.parse(localStorage['cartLines'] || '[]');
         var line = cartLines.find(l => l.good.id === good.id);
         console.log(line);
@@ -76,6 +76,11 @@ export class Cart extends AppModal {
         this.init();
     }
 
+    checkOrderState() {
+        if (window.location.pathname != '/checkout' && localStorage['processingOrder'] && localStorage['processingOrder'].length)
+            window.location.pathname = '/checkout';
+    }
+
     init() {
 
         var cartLines = JSON.parse(localStorage['cartLines'] || '[]');
@@ -89,6 +94,8 @@ export class Cart extends AppModal {
         cartLines.map(x => totalCount += x.count);
         console.log('totalCount',totalCount);
         window.setCartCount && window.setCartCount(totalCount);
+        this.checkOrderState();
     }
+
 
 }
